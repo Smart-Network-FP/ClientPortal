@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  client-portal:
+    container_name: client-portal
+    image: client-portal
+    build:
+      context: .
+      target: development
+    # volumes:
+    #   - ./app:/app/src
+    networks:
+      - node-network
+    ports:
+      - 8080:3000
+
+networks:
+  node-network:
+    external: true
