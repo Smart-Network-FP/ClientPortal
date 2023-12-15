@@ -1,0 +1,89 @@
+.profile {
+  margin: auto;
+  width: min(80%, 125rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.top-frame {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 40rem;
+  margin: 4rem 0;
+}
+.top-frame .profile-avatar {
+  height: 28rem;
+  width: 28rem;
+  border-radius: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.top-frame .profile-name {
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+.top-frame .profile-meta {
+  font-size: 1.6rem;
+}
+
+.profile-sumamry {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 4rem;
+  border-radius: 5px;
+  background-color: #50E884;
+  margin: 2rem 0;
+}
+.profile-sumamry p {
+  font-size: 1.6rem;
+  margin: 2rem 0;
+}
+
+.h2 {
+  font-size: 2rem;
+  color: black;
+}
+
+.work-exp {
+  background-color:#D9D9D9;
+  margin: 2rem 0;
+  padding: 2rem 4rem;
+  border-radius: 5px;
+  color: #7B7B7B;
+  border: 1px solid #C0C0C0;
+}
+.work-exp p {
+  font-size: 1.4rem;
+}
+.work-exp h2 {
+  color: black;
+}
+.work-exp ul {
+  margin: 2rem 1.5rem;
+  font-size: 1.5rem;
+  color: #5C5C5C;
+}
+
+.skills {
+  background-color:#D9D9D9;
+  margin: 2rem 0;
+  padding: 2rem 4rem;
+  border-radius: 5px;
+  color: #7B7B7B;
+  border: 1px solid #C0C0C0;
+}
+.skills h2 {
+  color: black;
+}
+
+.schedule-meeting-button {
+  display: grid;
+}
+.schedule-meeting-button button {
+  width: 30rem;
+  margin: 3rem auto;
+  margin-bottom: 30rem;
+}

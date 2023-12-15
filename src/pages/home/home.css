@@ -1,0 +1,114 @@
+.home {
+  margin: auto;
+  width: min(80%, 125rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  height: calc(100vh * .7);
+  margin: 4rem 0;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero h1 {
+  font-size: 4rem;
+}
+.hero img {
+  margin: 4rem 0;
+}
+.hero p {
+  font-size: 1.5rem;
+  text-align: center;
+  width: 60%;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.top-experts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.banner-home {
+  background-color: black;
+  color: #50E884;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4rem 0;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.banner-home h2 {
+  font-size: 3rem;
+  text-align: center;
+  line-height: 3rem;
+}
+
+.banner-home button {
+  width: 20rem;
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5rem 0 ;
+  text-align: center;
+}
+
+.information h2 {
+  font-size: 4rem;
+  font-weight: 400;
+}
+
+.information p {
+  font-size: 1.6rem;
+  margin: 3rem;
+}
+
+.patches {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 3rem 0;
+}
+
+.patch {
+  width: calc(100% / 3.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.patch > div {
+  width: 100%;
+  min-height: 40rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.patch > h4 {
+  font-size: 2.4rem;
+  margin-top: 2rem;
+}
+
+.patch > p {
+  font-size: 1.6rem;
+  margin-top: 1rem;
+}

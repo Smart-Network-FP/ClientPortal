@@ -1,0 +1,31 @@
+.footer {
+  width: calc(100vw - 10px);
+  transform: translateX(calc((100vw - min(80%, 125rem)) * -0.5));
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 10rem;
+  background-color: black;
+  padding: 0 5rem;
+}
+
+.footer span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer span a {
+  font-weight: normal;
+  color: #FFF;
+  text-decoration: underline;
+  font-size: 1.5rem;
+  margin-left: 5rem;
+}
+
+.footer p {
+  font-size: 1.4rem;
+  color: #FFF;
+}

@@ -1,0 +1,30 @@
+#input {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Nunito', sans-serif;
+}
+
+#input label {
+  font-size: 1.3rem;
+  margin-bottom: .5rem;
+}
+
+#input > input {
+  font-size: 1.4rem;
+  padding: 1rem ;
+  border-radius: 5px;
+  border: 1px solid gray;
+  outline: none;
+  height: 4rem;
+}
+#input > input:focus, input:focus-visible {
+  border: 2px solid #50E884;
+}
+
+.error-label {
+  color: red;
+}
+
+.error-input  {
+  border: 2px solid red !important;
+}

@@ -1,0 +1,26 @@
+.search {
+  display: flex;
+  flex-direction: row;
+  margin: 2rem 0;
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: max(65rem, 60%);
+}
+
+.search label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1.5rem 2rem;
+  background-color: #50E884;
+  border-radius: 5px 0 0 5px;
+  min-width: max-content;
+}
+
+.search input {
+  width: 100%;
+  font-family: 'Nunito', sans-serif;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+}
