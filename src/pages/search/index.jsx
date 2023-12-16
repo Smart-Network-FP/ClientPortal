@@ -1,17 +1,21 @@
-import { faker } from "@faker-js/faker";
+import { useState, useEffect } from "react";
+import { en, faker } from "@faker-js/faker";
+import _ from "lodash";
+
 import Navbar from "../../components/navbar";
 import Search from "../../components/search";
 import Action from "../../components/action";
 import Footer from "../../components/footer";
 
 import "./search.css";
+import { getHomeExperts } from "../../plugins/api/search";
 
-const SearchSection = () => {
+const SearchSection = ({ value, setValue }) => {
   return (
     <div className="search-section">
       <h1>We have found the Best Experts for you!</h1>
 
-      <Search />
+      <Search value={value} onChange={setValue} />
 
       <img src="/hero-image-1.png" />
 
@@ -32,6 +36,7 @@ const Results = ({ results }) => {
     summary,
     experience,
     designations,
+    id,
   }) => {
     return (
       <div className="result">
@@ -61,7 +66,7 @@ const Results = ({ results }) => {
           </div>
 
           <span style={{ width: "100%" }}>
-            <a href="/profile/1">View Profile</a>
+            <a href={`/profile/${id}`}>View Profile</a>
           </span>
         </div>
       </div>
@@ -81,20 +86,30 @@ const Results = ({ results }) => {
 };
 
 export default function SearchPage() {
-  const results = [...Array(40).keys()].map(() => ({
-    avatarUrl: faker.image.avatar({ height: 640, width: 480 }),
-    name: faker.name.firstName() + " " + faker.name.lastName(),
-    skills: "HTML, CSS, JavaScript",
-    summary:
-      "My passion lies in the art of creating customer-centric products that have a meaningful impact on people's lives. With years of experience in the startup world, I've had the privilege of learning from both successes and challenges, which have shaped my approach to Product Management.",
-    experience: "4Years and 8 Months",
-    designations: "Head of Development, Meta",
-  }));
+  const [searchText, setSearchText] = useState("");
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    getHomeExperts(searchText).then((response) => {
+      setResults(
+        response.data.map((entry) => ({
+          avatarUrl: faker.image.avatar({ height: 640, width: 480 }),
+          name: _.get(entry, "firstName", "-") + _.get(entry, "lastName", "-"),
+          summary: _.get(entry, "summary"),
+          designations: _.get(entry, "industry"),
+          skills: "",
+          experience: "",
+          id: _.get(entry, "id"),
+        }))
+      );
+      console.log(response.data);
+    });
+  }, [searchText]);
 
   return (
     <div className="search-page">
       <Navbar />
-      <SearchSection />
+      <SearchSection value={searchText} setValue={setSearchText} />
       <Results results={results} />
       <Action />
       <Footer />

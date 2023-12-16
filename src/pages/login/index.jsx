@@ -38,7 +38,11 @@ const LoginForm = ({ showForm }) => {
         setLoading(true);
         const response = await login(form.email, form.password, showForm);
         setUser(response.data);
-        navigate("/");
+        if (response.data?.expert?.firstName == "") {
+          navigate("/onboarding");
+        } else {
+          navigate("/");
+        }
       } catch ({ response }) {
         const error = _.get(response, "data.message", "Something went wrong");
         setErrors({

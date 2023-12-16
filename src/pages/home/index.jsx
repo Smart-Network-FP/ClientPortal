@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 
 import Navbar from "../../components/navbar";
@@ -6,14 +7,19 @@ import Avatar from "../../components/avatar";
 import Button from "../../components/button";
 import Action from "../../components/action";
 import Footer from "../../components/footer";
+import Loading from "../../components/loading";
 import "./home.css";
 
+import { getHomeExperts } from "../../plugins/api/search";
+import { useNavigate } from "react-router-dom";
+
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <div className="hero">
       <h1>Are you Looking for Experts to Hire?</h1>
 
-      <Search />
+      <Search onClick={() => navigate("/search")} />
 
       <img src="/hero-image-1.png" />
 
@@ -31,15 +37,17 @@ const TopExperts = ({ profiles }) => {
     <>
       <h2>Top Experts</h2>
       <div className="top-experts">
-        {profiles.map((profile, index) => (
-          <Avatar
-            key={index}
-            avatarUrl={profile.avatarUrl}
-            title={profile.title}
-            detail={profile.detail}
-            profileId={index}
-          />
-        ))}
+        {profiles.map(
+          ({ firstName = "-", lastName = "-", industry = "-", id }) => (
+            <Avatar
+              key={id}
+              avatarUrl={faker.image.avatarLegacy()}
+              title={firstName + " " + lastName}
+              detail={industry}
+              profileId={id}
+            />
+          )
+        )}
       </div>
     </>
   );
@@ -120,8 +128,8 @@ const TopJobs = ({ jobs = [] }) => {
     <>
       <h2>Top Jobs</h2>
       <div className="top-jobs">
-        {jobs.map(({ jobName, company, kind, pay }) => (
-          <div>
+        {jobs.map(({ jobName, company, kind, pay }, idx) => (
+          <div key={idx}>
             <h4>{jobName}</h4>
             <span>
               <p>{company}</p>
@@ -137,11 +145,24 @@ const TopJobs = ({ jobs = [] }) => {
 };
 
 export default function Home() {
-  const profiles = [...Array(12).keys()].map(() => ({
-    avatarUrl: faker.image.avatarLegacy(),
-    title: faker.person.jobTitle(),
-    detail: faker.person.jobDescriptor(),
-  }));
+  const [isLoading, setLoading] = useState(true);
+  const [profiles, setProfiles] = useState([]);
+
+  useEffect(() => {
+    getHomeExperts()
+      .then((response) => {
+        setProfiles(response.data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  // const profiles = [...Array(12).keys()].map(() => ({
+  //   avatarUrl: faker.image.avatarLegacy(),
+  //   title: faker.person.jobTitle(),
+  //   detail: faker.person.jobDescriptor(),
+  // }));
 
   const jobs = [...Array(40).keys()].map(() => ({
     jobName: faker.person.jobType(),
@@ -151,6 +172,14 @@ export default function Home() {
       faker.finance.amount({ min: 78, max: 95, symbol: "$", dec: 0 }) +
       "k/year",
   }));
+
+  if (isLoading) {
+    return (
+      <div className="home">
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="home">

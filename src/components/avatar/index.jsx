@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./avatar.css";
 
 export default function Avatar({ avatarUrl, title, detail, profileId }) {
@@ -10,7 +11,9 @@ export default function Avatar({ avatarUrl, title, detail, profileId }) {
       <h3>{title}</h3>
       <p>{detail}</p>
 
-      <a href={`/profile/${profileId}`}>View Profile</a>
+      <NavLink to={`/profile/${profileId}`} className="link">
+        View Profile
+      </NavLink>
     </div>
   );
 }

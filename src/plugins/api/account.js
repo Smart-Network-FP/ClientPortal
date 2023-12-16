@@ -9,11 +9,12 @@ export const login = (email, password, kind) => {
   });
 };
 
-export const signup = (email, password, kind) => {
+export const signup = (email, password, kind, firstName, lastName) => {
   const endpoint =
     kind == "expert" ? "/v1/auth/expert/register" : "v1/auth/register";
 
   return api.post(endpoint, {
+    name: firstName + " " + lastName,
     email,
     password,
   });
