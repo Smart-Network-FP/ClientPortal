@@ -109,7 +109,10 @@ export default function SearchPage() {
   return (
     <div className="search-page">
       <Navbar />
-      <SearchSection value={searchText} setValue={setSearchText} />
+      <SearchSection
+        value={searchText}
+        setValue={(e) => setSearchText(e.target.value)}
+      />
       <Results results={results} />
       <Action />
       <Footer />

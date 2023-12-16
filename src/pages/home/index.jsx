@@ -15,11 +15,16 @@ import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const navigate = useNavigate();
+  const [searchText, setSearchText] = useState("");
   return (
     <div className="hero">
       <h1>Are you Looking for Experts to Hire?</h1>
 
-      <Search onClick={() => navigate("/search")} />
+      <Search
+        value={searchText}
+        setValue={(e) => setSearchText(e.target.value)}
+        onClick={() => navigate("/search")}
+      />
 
       <img src="/hero-image-1.png" />
 
