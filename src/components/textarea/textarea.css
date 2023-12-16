@@ -17,7 +17,6 @@
   border: 1px solid gray;
   outline: none;
   height: 4rem;
-  background-color: #D9D9D9;
   min-height: 10rem;
 }
 #textarea > textarea:focus, textarea:focus-visible {

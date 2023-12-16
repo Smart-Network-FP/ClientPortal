@@ -17,7 +17,7 @@
   text-align: center;
 }
 
-.avatar a {
+.link {
   background-color: #50E884;
   color: black;
   padding: .5rem 1rem;
@@ -29,4 +29,5 @@
   height: 22rem;
   background-size: cover;
   background-position: center;
+  background-color: #C0C0C0;;
 }

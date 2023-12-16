@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
-import { Routes, Route, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Routes, Route, useParams, useNavigate } from "react-router-dom";
 
+import UserContext from "../../context/UserContext";
 import Navbar from "../../components/navbar";
 import Button from "../../components/button";
 import Footer from "../../components/footer";
 import Loading from "../../components/loading";
 import "./profile.css";
+
+import { getProfile } from "../../plugins/api/profile";
 
 const TopFrame = ({ avatarUrl, name, meta }) => {
   return (
@@ -65,11 +68,16 @@ const Skills = ({}) => {
 
 export default function Profile() {
   const [isLoading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const [user, setUser] = useContext(UserContext);
   const { id } = useParams();
 
   useEffect(() => {
-    console.log(id);
-    setLoading(false);
+    if (!user?.tokens?.access?.token) navigate("/");
+    getProfile(user?.tokens?.access?.token, id).then(() => {
+      console.log(">", response);
+      setLoading(false);
+    });
   }, []);
 
   const profile = {
